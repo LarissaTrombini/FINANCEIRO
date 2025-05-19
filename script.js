@@ -30,6 +30,7 @@ btnDashboard.addEventListener('click', () => {
   lancamentosSection.classList.remove('active');
   dashboardSection.classList.add('active');
   atualizarDashboard();
+  
 });
 
 btnLancamentos.addEventListener('click', () => {
@@ -255,3 +256,43 @@ function formatarDataBR(dataISO) {
   const [ano, mes, dia] = dataISO.split("-");
   return `${dia}/${mes}/${ano}`;
 }
+// Suponha que você tenha um array de registros, cada registro tem:
+// { tipo: 'entrada' | 'saida', valor: number, dataPagamento: 'YYYY-MM-DD' }
+
+// Exemplo:
+const registros = [
+  { tipo: 'entrada', valor: 1000, dataPagamento: '2025-05-10' },
+  { tipo: 'saida', valor: 200, dataPagamento: '2025-06-01' }, // futura, ignorar até chegar a data
+  { tipo: 'entrada', valor: 500, dataPagamento: '2025-05-19' }, // hoje, conta
+];
+
+// Função para filtrar e somar só valores pagos até hoje
+function calcularDashboard(registros) {
+  const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0); // zerar hora para comparar só data
+
+  let totalEntradas = 0;
+  let totalSaidas = 0;
+
+  registros.forEach(registro => {
+    const dataPagamento = new Date(registro.dataPagamento + 'T00:00:00');
+
+    // Só contar se dataPagamento <= hoje
+    if (dataPagamento <= hoje) {
+      if (registro.tipo === 'entrada') {
+        totalEntradas += registro.valor;
+      } else if (registro.tipo === 'saida') {
+        totalSaidas += registro.valor;
+      }
+    }
+  });
+
+  const saldo = totalEntradas - totalSaidas;
+
+  return { totalEntradas, totalSaidas, saldo };
+}
+
+// Teste
+const resultado = calcularDashboard(registros);
+console.log(resultado);
+// Vai somar apenas entradas e saídas até hoje, ignorando futuras
