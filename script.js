@@ -216,10 +216,10 @@ function calcularResumoLancamentos() {
     let totalEntradas = 0;
     let totalSaidas = 0;
 
-    const linhas = document.querySelectorAll("#tabela-lancamentos tbody tr");
+   const tabelaLancamentosBody = document.querySelector('#tabelaLancamentos tbody');
 
     linhas.forEach(linha => {
-        const tipo = linha.querySelector("td:nth-child(2)").textContent.trim().toLowerCase();
+        const tipo = linha.querySelector("td:nth-child(5)").textContent.trim().toLowerCase();
         const valorTexto = linha.querySelector("td:nth-child(3)").textContent.trim();
         const valor = parseFloat(valorTexto.replace("R$", "").replace(".", "").replace(",", "."));
 
@@ -269,10 +269,12 @@ const registros = [
 // Função para filtrar e somar só valores pagos até hoje
 function calcularDashboard(registros) {
   const hoje = new Date();
-  hoje.setHours(0, 0, 0, 0); // zerar hora para comparar só data
+hoje.setHours(0,0,0,0);
 
-  let totalEntradas = 0;
-  let totalSaidas = 0;
+const lancamentosFiltrados = lancamentos.filter(l => {
+  const dataLanc = new Date(l.data + 'T00:00:00');
+  return dataLanc <= hoje;
+});
 
   registros.forEach(registro => {
     const dataPagamento = new Date(registro.dataPagamento + 'T00:00:00');
@@ -296,3 +298,19 @@ function calcularDashboard(registros) {
 const resultado = calcularDashboard(registros);
 console.log(resultado);
 // Vai somar apenas entradas e saídas até hoje, ignorando futuras
+fetch('http://localhost:3000/usuarios')
+  .then(res => res.json())
+  .then(data => {
+    console.log(data) // aqui você pode popular sua UI
+  })
+  .catch(err => console.error(err))
+  fetch('http://localhost:3000/usuarios', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ nome: 'Novo Usuário' })
+})
+.then(res => res.json())
+.then(data => console.log('Usuário criado:', data))
+.catch(err => console.error(err))
