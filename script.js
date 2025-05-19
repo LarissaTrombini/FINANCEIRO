@@ -69,7 +69,7 @@ function atualizarTabela() {
     const tr = document.createElement('tr');
 
 tr.innerHTML = `
-  <td>${l.data}</td>
+  <td>${formatarDataBR(l.data)}</td>
   <td>${l.descricao}</td>
   <td>${l.categoria}</td>
   <td>R$ ${Number(l.valor).toFixed(2).replace('.', ',')}</td>
@@ -250,4 +250,8 @@ function enviarAlertaWhatsapp(nome, valor, descricao) {
   const mensagem = `Olá, ${nome}! Lembrete: você tem uma conta pendente de R$ ${valor} referente a "${descricao}". Por favor, verifique seu controle financeiro.`;
   const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
   window.open(link, '_blank');
+}
+function formatarDataBR(dataISO) {
+  const [ano, mes, dia] = dataISO.split("-");
+  return `${dia}/${mes}/${ano}`;
 }
