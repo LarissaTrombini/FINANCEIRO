@@ -3,6 +3,7 @@
   box-sizing: border-box;
 }
 
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f4ff;
@@ -26,6 +27,7 @@ header {
   z-index: 1000;
 }
 
+/* Container do cabeçalho */
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -33,11 +35,13 @@ header {
   flex-wrap: wrap;
 }
 
+/* Título do cabeçalho */
 header h1 {
   font-size: 20px;
   margin: 0;
 }
 
+/* Menu de navegação */
 .top-menu button {
   background: none;
   border: none;
@@ -59,6 +63,8 @@ header h1 {
 main {
   padding-top: 80px;
 }
+
+
 
 nav button {
   background-color: #001B3A;
@@ -322,4 +328,19 @@ section#dashboardSection {
 
 .total-item.saldo p {
   color: #001B3A;
+}
+input[type="month"] {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  transition: border-color 0.3s;
+}
+
+input[type="month"]:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
 }

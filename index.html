@@ -8,15 +8,17 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
+ <header>
   <div class="header-container">
     <h1>Controle Financeiro Mensal</h1>
     <nav class="top-menu">
       <button id="btnDashboard">Dashboard</button>
       <button id="btnLancamentos">Lançamentos</button>
+      
     </nav>
   </div>
 </header>
+
 
   <main>
     <!-- Tela de lançamentos -->
@@ -69,6 +71,22 @@
         </thead>
         <tbody></tbody>
       </table>
+      <div id="resumo-lancamentos" style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap;">
+  <div style="background: #d1e7dd; padding: 15px; border-radius: 8px; flex: 1;">
+    <h4>Total Entradas</h4>
+    <p id="resumo-entradas" style="font-weight: bold;">R$ 0,00</p>
+  </div>
+  <div style="background: #f8d7da; padding: 15px; border-radius: 8px; flex: 1;">
+    <h4>Total Saídas</h4>
+    <p id="resumo-saidas" style="font-weight: bold;">R$ 0,00</p>
+  </div>
+  <div style="background: #cff4fc; padding: 15px; border-radius: 8px; flex: 1;">
+    <h4>Saldo</h4>
+    <p id="resumo-saldo" style="font-weight: bold;">R$ 0,00</p>
+  </div>
+  <button id="btnAlertaWhatsapp" style="margin: 10px 0; display: none; background-color: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
+  Enviar alerta via WhatsApp
+</div>
     </section>
 
     <!-- Tela do dashboard -->
@@ -95,6 +113,7 @@
 
       <canvas id="graficoEntradasSaidas" width="400" height="200"></canvas>
     </section>
+    
   </main>
 
   <script src="script.js"></script>

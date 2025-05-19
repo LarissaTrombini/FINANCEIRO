@@ -211,3 +211,43 @@ carregarLancamentos();
 atualizarTabela();
 atualizarDashboard();
 lancamentosSection.classList.add('active');
+function calcularResumoLancamentos() {
+    let totalEntradas = 0;
+    let totalSaidas = 0;
+
+    const linhas = document.querySelectorAll("#tabela-lancamentos tbody tr");
+
+    linhas.forEach(linha => {
+        const tipo = linha.querySelector("td:nth-child(2)").textContent.trim().toLowerCase();
+        const valorTexto = linha.querySelector("td:nth-child(3)").textContent.trim();
+        const valor = parseFloat(valorTexto.replace("R$", "").replace(".", "").replace(",", "."));
+
+        if (!isNaN(valor)) {
+            if (tipo === "entrada") {
+                totalEntradas += valor;
+            } else if (tipo === "saída" || tipo === "saida") {
+                totalSaidas += valor;
+            }
+        }
+    });
+
+    const saldo = totalEntradas - totalSaidas;
+
+    // Atualizar o painel de resumo
+    document.getElementById("resumo-entradas").textContent = 
+        "R$ " + totalEntradas.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    document.getElementById("resumo-saidas").textContent = 
+        "R$ " + totalSaidas.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    document.getElementById("resumo-saldo").textContent = 
+        "R$ " + saldo.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+}
+
+// Executa ao carregar
+window.addEventListener("load", calcularResumoLancamentos);
+
+function enviarAlertaWhatsapp(nome, valor, descricao) {
+  const numero = '5511999999999'; // Substitua pelo número de destino
+  const mensagem = `Olá, ${nome}! Lembrete: você tem uma conta pendente de R$ ${valor} referente a "${descricao}". Por favor, verifique seu controle financeiro.`;
+  const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+  window.open(link, '_blank');
+}
