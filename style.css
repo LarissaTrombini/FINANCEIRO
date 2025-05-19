@@ -1,0 +1,325 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4ff;
+  color: #001B3A;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #001B3A;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.top-menu button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 15px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.top-menu button:hover {
+  background-color: #004080;
+}
+
+/* Espaço para o conteúdo não ficar escondido atrás do cabeçalho fixo */
+main {
+  padding-top: 80px;
+}
+
+nav button {
+  background-color: #001B3A;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+  background-color: #004080;
+}
+
+main {
+  width: 900px;
+  max-width: 95vw;
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 6px 15px rgba(0, 27, 58, 0.15);
+}
+
+/* Seções */
+section {
+  display: none;
+}
+
+section.active {
+  display: block;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #001B3A;
+  font-weight: 700;
+}
+
+/* Formulário de lançamentos */
+form#formLancamento {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+form#formLancamento label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #001B3A;
+  font-size: 14px;
+  min-width: 180px;
+  flex: 1 1 180px;
+}
+
+form#formLancamento input,
+form#formLancamento select {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border: 1.5px solid #001B3A;
+  border-radius: 6px;
+  font-size: 14px;
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+form#formLancamento input:focus,
+form#formLancamento select:focus {
+  border-color: #004080;
+}
+
+form#formLancamento button {
+  background-color: #001B3A;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 24px;
+  transition: background-color 0.3s ease;
+  flex: 1 1 130px;
+}
+
+form#formLancamento button#btnCancelar {
+  background-color: #dc3545;
+}
+
+form#formLancamento button:hover {
+  background-color: #004080;
+}
+
+form#formLancamento button#btnCancelar:hover {
+  background-color: #b52b3a;
+}
+
+/* Filtro mês */
+label[for="filtroMesLista"] {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #001B3A;
+}
+
+#filtroMesLista {
+  width: 150px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1.5px solid #001B3A;
+  margin-bottom: 20px;
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+#filtroMesLista:focus {
+  border-color: #004080;
+}
+
+/* Tabela lançamentos */
+table#tabelaLancamentos {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0 4px 10px rgba(0, 27, 58, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+  margin: 0 auto;
+}
+
+table#tabelaLancamentos thead {
+  background-color: #001B3A;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+table#tabelaLancamentos thead th {
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 15px;
+  user-select: none;
+}
+
+table#tabelaLancamentos tbody tr {
+  background-color: #f9fbff;
+  transition: background-color 0.3s ease;
+  cursor: default;
+}
+
+table#tabelaLancamentos tbody tr:nth-child(even) {
+  background-color: #e6f0ff;
+}
+
+table#tabelaLancamentos tbody tr:hover {
+  background-color: #cce0ff;
+}
+
+table#tabelaLancamentos tbody td {
+  padding: 12px 20px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+table#tabelaLancamentos tbody td.valor,
+table#tabelaLancamentos tbody td.pago {
+  text-align: right;
+  font-weight: 600;
+  min-width: 90px;
+}
+
+table#tabelaLancamentos tbody td.acao {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  min-width: 110px;
+}
+
+/* Botões ação */
+button.btnEditar,
+button.btnExcluir {
+  background: none;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #001B3A;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+button.btnEditar:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+button.btnExcluir:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Ícones com emojis */
+button.btnEditar::before {
+  content: "✏️ ";
+}
+
+button.btnExcluir::before {
+  content: "🗑️ ";
+}
+
+/* Dashboard básico */
+section#dashboardSection {
+  text-align: center;
+  color: #001B3A;
+}
+
+.totais {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.total-item {
+  background-color: #f9fbff;
+  padding: 20px 35px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 27, 58, 0.12);
+  min-width: 150px;
+}
+
+.total-item h3 {
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+.total-item p {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.total-item.entrada p {
+  color: #008000;
+}
+
+.total-item.saida p {
+  color: #dc3545;
+}
+
+.total-item.saldo p {
+  color: #001B3A;
+}

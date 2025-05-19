@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Controle Financeiro Mensal</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+  <div class="header-container">
+    <h1>Controle Financeiro Mensal</h1>
+    <nav class="top-menu">
+      <button id="btnDashboard">Dashboard</button>
+      <button id="btnLancamentos">Lançamentos</button>
+    </nav>
+  </div>
+</header>
+
+  <main>
+    <!-- Tela de lançamentos -->
+    <section id="lancamentosSection" class="active">
+      <h2>Gerenciar Lançamentos</h2>
+      <form id="formLancamento">
+        <input type="hidden" id="inputId" />
+        <label>Data:
+          <input type="date" id="inputData" required />
+        </label>
+        <label>Descrição:
+          <input type="text" id="inputDescricao" placeholder="Ex: Salário, Conta de luz" required />
+        </label>
+        <label>Categoria:
+          <input type="text" id="inputCategoria" placeholder="Ex: Salário, Moradia, Lazer" required />
+        </label>
+        <label>Valor (R$):
+          <input type="number" id="inputValor" step="0.01" min="0" required />
+        </label>
+        <label>Tipo:
+          <select id="inputTipo" required>
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+          </select>
+        </label>
+        <label>Pago?
+          <select id="inputPago" required>
+            <option value="nao">Não</option>
+            <option value="sim">Sim</option>
+          </select>
+        </label>
+        <button type="submit" id="btnSalvar">Salvar</button>
+        <button type="button" id="btnCancelar">Cancelar</button>
+      </form>
+
+      <label for="filtroMesLista">Filtrar por mês:</label>
+      <input type="month" id="filtroMesLista" />
+
+      <table id="tabelaLancamentos">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Valor (R$)</th>
+            <th>Tipo</th>
+            <th>Pago?</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Tela do dashboard -->
+    <section id="dashboardSection">
+      <h2>Dashboard</h2>
+
+      <label for="filtroMesDashboard">Filtrar por mês:</label>
+      <input type="month" id="filtroMesDashboard" />
+
+      <div class="totais">
+        <div class="total-item entrada">
+          <h3>Total Entradas</h3>
+          <p id="totalEntradas">R$ 0,00</p>
+        </div>
+        <div class="total-item saida">
+          <h3>Total Saídas</h3>
+          <p id="totalSaidas">R$ 0,00</p>
+        </div>
+        <div class="total-item saldo">
+          <h3>Saldo</h3>
+          <p id="totalSaldo">R$ 0,00</p>
+        </div>
+      </div>
+
+      <canvas id="graficoEntradasSaidas" width="400" height="200"></canvas>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
